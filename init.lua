@@ -1,6 +1,13 @@
 function TL(str)
-    local result = str:gsub("([^%%])%%{(.+)}", function(prev, expression)
-        return prev .. tostring(assert(loadstring("return " .. expression))())
+    local result = str:gsub("([^%%])%%%b{}", function(prev, expression)
+        if prev == "%" then
+            return prev .. TL(expression)
+        end
+
+        expression = expression:sub(2, -2)
+        expression = assert(loadstring("return " .. TL(expression)))
+
+        return tostring(expression())
     end)
       :gsub("%%%%{(.+)}", "%%{%1}")
     
