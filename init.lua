@@ -9,7 +9,6 @@ function TL(str)
 
         return tostring(expression())
     end)
-      :gsub("%%%%{(.+)}", "%%{%1}")
     
     --Prevents returning excess gsub return values.
     return result
