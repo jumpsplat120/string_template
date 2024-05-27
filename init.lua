@@ -1,5 +1,5 @@
 function TL(str)
-    local result = str:gsub("([^%%])%%%b{}", function(prev, expression)
+    local result = str:gsub("([^%%])%%(%b{})", function(prev, expression)
         if prev == "%" then
             return prev .. TL(expression)
         end
