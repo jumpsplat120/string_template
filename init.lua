@@ -1,4 +1,6 @@
-local mt = { __index = _G }
+local TL, mt
+
+mt = { __index = _G }
 
 ---Allows you to treat a string as something akin to a Javascript template literal,
 ---or python's fstrings. Passing in a string to the function will parse anything in
@@ -49,3 +51,5 @@ function TL(str, env, recursive)
     --Prevents returning excess gsub return values.
     return result
 end
+
+return TL
